@@ -1,0 +1,15 @@
+Program 1.a: TO MOVE A BLOCK OF 5 BYTES OF DATA
+FROM SOURCE 20H TO DESTINATION 40H IN INTERNAL
+RAM.
+ORG 0000H ; start program at 0000h location
+MOV R0,# 20H ; initialize R0 with beginning address of source in
+internal memory
+MOV R1,# 40H ; initialize R1 with beginning address of destination in internal memory
+MOV R5,# 05H ; r5 is initialized with 5 counts
+check: MOV A, @R0 ; move the source data to accumulator
+MOV @R1,A ; move the content of accumulator to destination
+INC R0 ; incremet source address
+INC R1 ; incremet destination address
+DJNZ R5, check ; decrement R5 i.e., till count becomes zero
+stop: SJMP stop ; stop incrementing Program Counter
+END ; end of the program
