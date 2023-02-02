@@ -1,0 +1,17 @@
+Program 1.i: TO FIND SMALLEST NUMBER FROM AN ARRAY OF 6 BYTES STORED STARTING FROM 20H IN INTERNAL RAM AND STORE THE RESULT AT 45H IN INTERNAL RAM.
+ORG 0000H ; start the program at 0000h
+MOV R0,# 20H ; initialize R0 with address of source locn.
+MOV R2,# 05h ; initialize count value into R2
+MOV A,@R0 ; move data from source array to Acc.
+INC R0 ; increment R0 to point next locn.
+back: MOV 10H,@R0 ; move next locn. data to temporary locn. 10h
+CJNE A, 10H, next ; compare two data, if not equal jump to label next
+SJMP skip ; else if equal jump to label skip
+next: JC skip ; if destination data < source data,jump to label
+skip
+MOV A,@R0 ; hold the smallest number in Acc.
+skip: INC R0 ; increment R0 to point next locn.
+DJNZ R2, back ; decrement R2 i.e., till count becomes zero
+MOV 45H, A ; store the smallest number at 45h
+stop: SJMP stop ; stop incrementing Program Counter
+bEND ; end of the progra
