@@ -1,0 +1,28 @@
+Program 5.c: TO INTERFACE STEPPER MOTOR AND ROTATE IN 360◦ CLOCKWISE DIRECTION.
+#include<r eg51 . h>
+void d ela y ( void ) ;
+void main ( void)
+{
+I n t j ;
+for ( j =0; j <=50; j ++) /* e x e c u t e f o r l o o p 50 t ime s t o
+{ r o t a t e s t e p p e r motor 360 d e g r e e s */
+P2=0x07 ;
+d ela y ( ) ;
+P2=0x0b ;
+d ela y ( ) ;
+P2=0x0d ;
+d ela y ( ) ;
+P2=0x0e ;
+d ela y ( ) ;
+}
+while ( 1 ) ;
+}
+void d ela y ( void)
+{
+int i ;
+for ( i =0; i <=30000; i ++);
+}
+Result:
+Stepper motor is interfaced with 8051 and programmed to rotate in 360◦
+clockwise direction.
+8
