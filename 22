@@ -1,0 +1,23 @@
+Program 4.g: PROGRAM TO SEPARATE POSITIVE OR NEGATIVE NUMBERS IN A GIVEN ARRAY STORED FORM
+3000H EXTERNAL RAM. STORE POSITIVE NUMBERS FROM
+40H AND NEGATIVE NUMBERS FROM 48H INTERNAL
+RAM.
+ORG 0000H ; start the program at 0000h
+MOV R2,# 05H ; load the count value in reg R2
+MOV DPTR,# 3000H ; load DPTR with start address of array 3000h
+MOV R0,# 40H ; load R0 with 40h where positive numbers are
+stored
+MOV R1,# 48H ; load R1 with 48h where negative number are
+stored
+loop: MOVX A, @DPTR ; copy the number into register Acc.
+JB 0E7H, next ; check D7 bit of Acc. to find positive or negative
+number, If negative jump to label next
+MOV @R0, A ; else, store the positive number starting at 40h
+INC R0 ; increment R0 to point next locn.
+SJMP skip ; an unconditional jump to skip
+next: MOV @R1, A ; store the negative number starting at 48h
+INC R1 ; increment R1 to point next locn.
+skip: INC DPTR ; increment DPTR to point next data
+DJNZ R2, loop ; repeat until count (R2) becomes zero
+stop: SJMP stop ; stop incrementing Program Counter
+END ; end of the program
