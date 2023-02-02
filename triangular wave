@@ -1,0 +1,19 @@
+Program 8.c: TO GENERATE TRIANGULAR WAVEFORM.
+#include<r eg51 . h>
+i d a t a unsigned char count ;
+void main ( )
+{
+while ( 1 )
+{
+for ( count =0; count !=0 x f f ; count++)
+{
+P0=count ;
+}
+for ( count=0 x f f ; count >0; count==)
+{
+P0=count ;
+}
+}
+}
+Result:
+DAC is interfaced with 8051 and programmed to generate Triangular Waveform.
