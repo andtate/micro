@@ -1,0 +1,13 @@
+Program 1.d: TO EXCHANGE THE SOURCE BLOCK STARTING WITH ADDRESS 20H IN INTERNAL RAM CONTAINING 5 BYTES OF DATA WITH DESTINATION BLOCK STARTING WITH ADDRESS 40H IN INTERNAL RAM.
+ORG 0000H ; start the program at 0000h
+MOV R0,# 20H ; initialize R0 with address of source locn.
+MOV R1,# 40H ; initialize R1 with address of destination locn.
+MOV R4,# 05H ; initialize count value into R4
+loop: MOV A,@R0 ; move data from source locn. to Acc.
+XCH A,@R1 ; exchange content of Acc. and destination
+MOV@R0,A ; move destination data present in Acc. to source
+INC R0 ; increment R0 to point next source locn.
+INC R1 ; increment R1 to point next destination locn.
+DJNZ R4, loop ; decrement R4 i.e., till count becomes zero
+stop: SJMP stop ; stop incrementing Program Counter
+END ; end of the progra
