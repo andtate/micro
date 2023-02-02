@@ -1,0 +1,31 @@
+ORG 000H ; start the program at 000h
+MOV R2,# 04H ; initialize external count value in R2
+back: MOV R0,# 30H ; initialize R0 with starting address of array
+MOV R3,# 04H ; initialize R3 with internal count value
+loop: MOV A,@R0 ; move data into Acc.
+INC R0 ; increment R0 to point next location
+MOV 20H,@R0 ; move next data into temporary locn. 20H
+CJNE A, 20H, check ; compare two data if not equal jump to label check
+SJMP next ; if two data are equal jump to label next
+check: JNC next ; if destination data > than source data jump to
+label next
+XCH A,@R0 ; else exchange first and second data
+DEC R0 ; decrement R0 to point previous locn.
+MOV @R0,A ; place largest number
+INC R0 ; increment R0 to point next locn.
+next: DJNZ R3, loop ; repeat comparison with all data
+DJNZ R2, back ; repeat for all data
+stop: SJMP stop ; stop incrementing Program Counter
+END ; end of the progra
+
+
+
+
+
+
+
+
+
+
+
+
