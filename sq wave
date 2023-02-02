@@ -1,0 +1,20 @@
+Program 8.b: TO GENERATE SQUARE WAVEFORM.
+#include<r eg51 . h>
+void d ela y ( void ) ;
+void main ( )
+{
+while ( 1 )
+{
+P0=0x0 ;
+d ela y ( ) ;
+P0=0 x f f ;
+d ela y ( ) ;
+}
+}
+void d ela y ( void)
+{
+int i ;
+for ( i =0; i <=300; i ++);
+}
+Result:
+DAC is interfaced with 8051 and programmed to generate Square Waveform.
