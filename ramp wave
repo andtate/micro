@@ -1,0 +1,14 @@
+Program 8.d: TO GENERATE RAMP WAVEFORM.
+#include<r eg51 . h>
+i d a t a unsigned char count ;
+void main ( )
+{
+count =0;
+while ( 1 )
+{
+P0=count ;
+count++;
+}
+}
+Result:
+DAC is interfaced with 8051 and programmed to generate Ramp Waveform.
