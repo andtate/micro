@@ -1,0 +1,19 @@
+Program 4.a: TO DEMONSTRATE DECIMAL UP COUNTER
+FROM 00 TO 99.
+ORG 0000H ; start program from 0000h
+MOV A,# 00H ; initialize acc. with 00
+MOV R1,# 64H ; load R1 with number of counts
+loop: MOV 80H,A ; send COUNT to Port-0
+ADD A,# 01H ; increment COUNT by 1
+DA A ; convert to decimal
+ACALL delay ; call the delay
+DJNZ R1, loop ; decrement R1 i.e., till count becomes zero
+stop: SJMP stop ; stop incrementing PC
+; subroutine program to create some delay using instructions
+delay: MOV R2,# 03H ; load count to R2
+go: MOV R3,# 02H ; load count to R3
+wait: DJNZ R3, wait ; decrement count until it becomes zero
+DJNZ R2, go ; decrement count until it becomes zero
+RET ; return to main program
+END ; end the program
+Result: The decimal count form 00 to 99 is observed on PORT 0.
