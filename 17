@@ -1,0 +1,19 @@
+Program 3.e: TO CONVERT DECIMAL TO HEXADECIMAL,
+STORED AT 20H IN INTERNAL RAM. STORE RESULT AT
+21H IN INTERNAL RAM.
+ORG 0000H ; start the program at 0000h
+MOV R1,20H ; take the decimal number into R2
+MOV A,R1 ; get the decimal no. into Acc.
+ANL A,# 0FH ; mask lower nibble, to get lower byte
+MOV R2,A ; save into R2 reg.
+MOV A,R1 ; take the decimal number into Acc.
+ANL A,# 0F0H ; mask the higher nibble, to get higher byte
+SWAP A ; convert to lower nibble
+MOV 0F0H,# 0AH ; load 10 into register B
+MUL AB ; multiply higher nibble with 10
+ADD A,R2 ; convert by adding the result with higher byte
+MOV 21H,A ; save the result in 21h
+stop: SJMP stop ; stop incrementing Program Counter
+END ; end of the program
+Result:
+Before Execution
