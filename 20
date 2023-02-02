@@ -1,0 +1,22 @@
+Program 4.c: TO DEMONSTRATE BINARY UP COUNTER
+FROM 00H-FFH.
+ORG 000H ; start program from 000h
+MOV A,# 00H ; load acc with initial count value of 00h
+MOV R1,# 255 ; load R1 with count of 256
+loop: MOV 80H, A ; send COUNT to port-0
+ADD A,# 01H ; increment COUNT by 1
+ACALL delay ; call the delay
+DJNZ R1, loop ; decrement R1 i.e., till count becomes zero
+stop: SJMP stop ; stop incrementing PC
+; subroutine program to create 100 µs delay using TIMER
+delay: MOV 89H,# 01H ; select timer-0, mode-1
+up: MOV 8AH,# 0A4H ; load the TL0 with delay value
+MOV 8CH,# 0FFH ; load TH0 with delay value
+SETB 8CH ; start timer TR0
+wait: JNB 8DH, wait ; monitor the overflow flag TF0
+CLR 8CH ; stop timer
+CLR 8DH ; clear the overflow flag TF0
+RET ; return to main program
+END ; end the program
+Result: The binary counts from 0000000b to 11111111b are observed on PORT0
+After Execution
