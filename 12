@@ -1,0 +1,22 @@
+  Program 2.h: TO FIND THE SUBTRACTION OF 6 BYTES
+STORED IN THE INTERNAL RAM STARTING WITH ADDRESS 40H. STORE THE 16-BITS RESULT AT THE END
+OF THE BLOCK
+ORG 0000H ; start the program at 0000h
+CLR C ; clear carry flag
+MOV R0,# 40H ; initialize source location in R0
+MOV R2,# 05H ; initialize count value into R2
+MOV R3,# 00H ; clear R3 to hold the MSB
+MOV A,@R0 ; move first byte in accumulator
+INC R0 ; increment R0 to point next data
+loop: CLR C ; make sub out of subb
+SUBB A,@R0 ; subtract Acc. and data pointed by R0
+JNC skip ; check for MSB i.e. borrow else jump to skip
+DEC R3 ; store MSB of result i.e. borrow in R3 register
+skip: INC R0 ; increment R0 to point next data
+DJNZ R2, loop ; decrement R2 i.e., till count becomes zero
+MOV @R0,A ; store LSB of result at end of the block
+MOV A,R3 ; move MSB of result into Acc.
+INC R0 ; increment R0 to point next locn.
+MOV @R0,A ; store MSB of result at end of the block
+stop: SJMP stop ; stop incrementing Program Counter
+END ; end of the progra
